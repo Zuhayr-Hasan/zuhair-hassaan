@@ -14,6 +14,15 @@ export default function Projects() {
 
   const projects = [
     {
+      title: "Point of Sale System",
+      description:
+        "Engineered a scalable full-stack POS and business management system with React, Node.js, and MongoDB, featuring real-time operations (Socket.IO, Redis), multi-branch and inventory management, role-based access control, advanced reporting, offline caching, and secure integrations with FBR/PRA and external APIs (e.g., Shopify).",
+      image: "/placeholder.svg?height=200&width=400&text=LocalCoins+Trading",
+      technologies: ["React Native", "TypeScript", "Node.js", "GraphQL", "Stripe", "MongoDB"],
+      liveUrl: "vareonofficial.com/",
+      color: "rom-purple-500 to-pink-500",
+    },
+    {
       title: "LocalCoins - P2P Trading Platform",
       description:
         "Enabled users to trade directly without intermediaries, improving transaction speed, reducing fees, and increasing flexibility through secure, real-time payments — boosting user trust and adoption in local trading markets.",

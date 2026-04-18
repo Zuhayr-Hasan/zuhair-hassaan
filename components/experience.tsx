@@ -3,7 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Calendar, MapPin, Building } from "lucide-react"
-import { motion, useInView } from "framer-motion"
+import { motion, useInView, type Variants } from "framer-motion"
 import { useRef } from "react"
 
 export default function Experience() {
@@ -13,16 +13,16 @@ export default function Experience() {
   const experiences = [
     {
       title: "Full-Stack Software Engineer",
-      company: "Huebyte",
-      location: "On-Site",
+      company: "Upwork",
+      location: "Remote",
       period: "January 2023 - Present",
       description:
-        "Developed LocalCoins peer-to-peer cash transaction application, analyzed Facebook campaigns with Shopify integration, built TREDA property comparison platform for USA real estate, and created teleprompter browser extension with Gemini API integration.",
-      technologies: ["React", "Next.js", "TypeScript", "OpenAI API", "Gemini API", "Node.js", "MongoDB"],
+        "Engineered a scalable full-stack POS and business management system with React, Node.js, and MongoDB, featuring real-time operations (Socket.IO, Redis), multi-branch and inventory management, role-based access control, advanced reporting, offline caching, and secure integrations with FBR/PRA and external APIs (e.g., Shopify).",
+      technologies: ["Socket.io", "React 18", "JavaScript", "Redis", "Node.js", "MongoDB", "Express", "IndexedDB", "Redux", "Ant Design V5", "VPS Hosting"],
       color: "from-blue-500 to-purple-500",
     },
     {
-      title: "Front-End Engineer (Part Time)",
+      title: "Front-End Engineer (Contract)",
       company: "Codegic",
       location: "On-Site",
       period: "September 2022 - December 2022",
@@ -51,7 +51,7 @@ export default function Experience() {
         staggerChildren: 0.3,
       },
     },
-  }
+  } satisfies Variants
 
   const itemVariants = {
     hidden: { x: -50, opacity: 0 },
@@ -63,7 +63,7 @@ export default function Experience() {
         ease: "easeOut",
       },
     },
-  }
+  } satisfies Variants
 
   return (
     <section id="experience" className="py-20 px-4 bg-gray-50 dark:bg-gray-800/50" ref={ref}>

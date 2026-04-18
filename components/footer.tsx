@@ -85,7 +85,7 @@ export default function Footer() {
           className="border-t border-gray-800 mt-8 pt-8 text-center"
         >
           <p className="text-gray-400 flex items-center justify-center gap-2 mb-4">
-            Made with <Heart className="h-4 w-4 text-red-500 animate-pulse" /> by Zuhair Hassaan © 2024
+            Made with <Heart className="h-4 w-4 text-red-500 animate-pulse" /> by Zuhair Hassaan © 2026
           </p>
           <p className="text-gray-500 text-sm">Designed with passion, built with precision</p>
         </motion.div>

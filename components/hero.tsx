@@ -4,11 +4,17 @@ import { Button } from "@/components/ui/button"
 import { Github, Linkedin, Mail, Download, ChevronDown, Sparkles } from "lucide-react"
 import Image from "next/image"
 import { motion, useScroll, useTransform } from "framer-motion"
-import { useRef } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import Link from "next/link"
 
 export default function Hero() {
   const ref = useRef(null)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -39,10 +45,25 @@ export default function Hero() {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: "easeOut",
+        // TS-friendly easing value (cubic-bezier) instead of string literal.
+        ease: [0.25, 0.1, 0.25, 1] as const,
       },
     },
   }
+
+  const particles = useMemo(() => {
+    if (!mounted) return []
+
+    const width = typeof window !== "undefined" ? window.innerWidth : 1000
+    const height = typeof window !== "undefined" ? window.innerHeight : 800
+
+    return [...Array(20)].map(() => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      duration: 3 + Math.random() * 2,
+      delay: Math.random() * 2,
+    }))
+  }, [mounted])
 
   return (
     <section ref={ref} className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
@@ -50,22 +71,19 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900">
         <motion.div className="absolute inset-0" style={{ y, opacity }}>
           {/* Floating particles */}
-          {[...Array(20)].map((_, i) => (
+          {particles.map((p, i) => (
             <motion.div
               key={i}
               className="absolute w-2 h-2 bg-blue-400/30 rounded-full"
-              initial={{
-                x: Math.random() * (typeof window !== "undefined" ? window.innerWidth : 1000),
-                y: Math.random() * (typeof window !== "undefined" ? window.innerHeight : 800),
-              }}
+              initial={{ x: p.x, y: p.y }}
               animate={{
                 y: [0, -30, 0],
                 opacity: [0.3, 0.8, 0.3],
               }}
               transition={{
-                duration: 3 + Math.random() * 2,
+                duration: p.duration,
                 repeat: Number.POSITIVE_INFINITY,
-                delay: Math.random() * 2,
+                delay: p.delay,
               }}
             />
           ))}
